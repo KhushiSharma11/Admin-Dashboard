@@ -1,6 +1,5 @@
-// src/pages/ManageSalesManagers.js
-
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 
@@ -52,6 +51,7 @@ function ManageSalesManagers() {
             <div key={manager.id} style={styles.managerItem}>
               <span>{manager.name}</span>
               <button onClick={() => handleDeleteSalesManager(manager.id)}>Delete</button>
+              <Link to={`/edit-sales-manager/${manager.id}`}>Edit</Link>
             </div>
           ))
         )}

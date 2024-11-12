@@ -1,0 +1,39 @@
+.dashboard-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.card {
+  margin-top: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+button.dashboard-button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.dashboard-button:hover {
+  background-color: #45a049;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 10px 0;
+}

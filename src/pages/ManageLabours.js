@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 function ManageLabours() {
