@@ -1,0 +1,82 @@
+/* General Styling */
+.loginPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6e7dff, #42d8c9);
+  overflow: hidden;
+}
+
+.loginContainer {
+  background-color: #fff;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 40px;
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.loginContainer h2{
+  font-size: 28;
+}
+
+.loginContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: 36px;
+  color: #333;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.header:hover {
+  color: #6e7dff;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.roleContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.cardWrapper {
+  flex: 1 1 calc(50% - 40px);
+  max-width: 350px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cardWrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Add hover effects to the LoginCard component inside the LoginPage */
+.cardWrapper .loginCard {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.cardWrapper .loginCard:hover {
+  background-color: #f0f4ff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}

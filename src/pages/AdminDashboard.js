@@ -1,150 +1,100 @@
-import React, { useState } from 'react';
-import './AdminDashboard.css'; // External CSS for styling
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import "./AdminDashboard.css"; // Import the CSS file
 
-const AdminDashboard = () => {
-  const [salesManagers, setSalesManagers] = useState([]);
-  const [labours, setLabours] = useState([]);
-  const [newSalesManager, setNewSalesManager] = useState('');
-  const [newLabour, setNewLabour] = useState('');
-  const [locations, setLocations] = useState([
-    { id: 1, name: 'John Doe', role: 'Sales Manager', location: 'Noida' },
-    { id: 2, name: 'Jane Smith', role: 'Labour', location: 'Delhi' },
+function AdminDashboard() {
+  const [salesManagers, setSalesManagers] = useState([
+    { id: uuidv4(), name: "Sam" },
+    { id: uuidv4(), name: "John" },
+    { id: uuidv4(), name: "Joy" }, // New Sales Manager
+  ]);
+  const [labours, setLabours] = useState([
+    { id: uuidv4(), name: "Aish" },
+    { id: uuidv4(), name: "Rio" },
+    { id: uuidv4(), name: "Emi" }, // New Labour
+  ]);
+  const [locations] = useState([
+    { id: uuidv4(), manager: "Sam", location: "Noida" },
+    { id: uuidv4(), manager: "John", location: "Delhi" },
+    { id: uuidv4(), manager: "Joy", location: "Mumbai" }, // New Location
   ]);
 
-  // CRUD Functions
-  const addUser = (type) => {
-    const id = Date.now();
-    if (type === 'Sales Manager') {
-      setSalesManagers([...salesManagers, { id, name: newSalesManager }]);
-      setLocations([...locations, { id, name: newSalesManager, role: 'Sales Manager', location: 'Unknown' }]);
-      setNewSalesManager('');
-    } else {
-      setLabours([...labours, { id, name: newLabour }]);
-      setLocations([...locations, { id, name: newLabour, role: 'Labour', location: 'Unknown' }]);
-      setNewLabour('');
+  const [newSalesManagerName, setNewSalesManagerName] = useState("");
+  const [newLabourName, setNewLabourName] = useState("");
+
+  const handleAdd = (type, name) => {
+    if (!name.trim()) {
+      alert("Name cannot be empty");
+      return;
+    }
+
+    const newItem = { id: uuidv4(), name };
+    if (type === "salesManager") {
+      setSalesManagers([...salesManagers, newItem]);
+      setNewSalesManagerName("");
+    } else if (type === "labour") {
+      setLabours([...labours, newItem]);
+      setNewLabourName("");
     }
   };
 
-  // Function to handle location change for a user
-  const handleLocationChange = (e, id) => {
-    const updatedLocations = locations.map((loc) =>
-      loc.id === id ? { ...loc, location: e.target.value } : loc
-    );
-    setLocations(updatedLocations);
+  const handleDelete = (type, id) => {
+    if (type === "salesManager") {
+      setSalesManagers(salesManagers.filter((item) => item.id !== id));
+    } else if (type === "labour") {
+      setLabours(labours.filter((item) => item.id !== id));
+    }
+  };
+
+  const handleViewLocation = (managerName) => {
+    const location = locations.find((loc) => loc.manager === managerName);
+    alert(`Manager Location: ${location ? location.location : "Unknown"}`);
   };
 
   return (
-    <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
+    <div className="dashboard">
+      <h2 className="header">Admin Dashboard</h2>
 
-      {/* Manage Sales Managers */}
-      <div className="card">
-        <h3>Manage Sales Managers</h3>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Enter Sales Manager Name"
-            value={newSalesManager}
-            onChange={(e) => setNewSalesManager(e.target.value)}
-            className="input-field"
-          />
-          <button className="dashboard-button" onClick={() => addUser('Sales Manager')}>
-            Add New
-          </button>
-        </div>
-        <table className="crud-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {salesManagers.map((manager) => (
-              <tr key={manager.id}>
-                <td>{manager.id}</td>
-                <td>{manager.name}</td>
-                <td>
-                  <button className="action-button">Edit</button>
-                  <button className="action-button delete-button">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <ManageSection
+        title="Manage Sales Managers"
+        items={salesManagers}
+        newItemName={newSalesManagerName}
+        setNewItemName={setNewSalesManagerName}
+        onAdd={() => handleAdd("salesManager", newSalesManagerName)}
+        onDelete={(id) => handleDelete("salesManager", id)}
+      />
 
-      {/* Manage Labours */}
-      <div className="card">
-        <h3>Manage Labours</h3>
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Enter Labour Name"
-            value={newLabour}
-            onChange={(e) => setNewLabour(e.target.value)}
-            className="input-field"
-          />
-          <button className="dashboard-button" onClick={() => addUser('Labour')}>
-            Add New
-          </button>
-        </div>
-        <table className="crud-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {labours.map((labour) => (
-              <tr key={labour.id}>
-                <td>{labour.id}</td>
-                <td>{labour.name}</td>
-                <td>
-                  <button className="action-button">Edit</button>
-                  <button className="action-button delete-button">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <ManageSection
+        title="Manage Labours"
+        items={labours}
+        newItemName={newLabourName}
+        setNewItemName={setNewLabourName}
+        onAdd={() => handleAdd("labour", newLabourName)}
+        onDelete={(id) => handleDelete("labour", id)}
+      />
 
-      {/* View Locations */}
-      <div className="card">
-        <h3>View Locations</h3>
-        <table className="crud-table">
+      <div className="manage-section">
+        <h3 className="section-title">View Locations</h3>
+        <table className="table">
           <thead>
-            <tr>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Location</th>
-              <th>Actions</th>
+            <tr className="table-header">
+              <th className="table-header-cell">Sales Manager</th>
+              <th className="table-header-cell">Location</th>
+              <th className="table-header-cell">Action</th>
             </tr>
           </thead>
           <tbody>
             {locations.map((loc) => (
-              <tr key={loc.id}>
-                <td>{loc.name}</td>
-                <td>{loc.role}</td>
-                <td>
-                  <select
-                    value={loc.location}
-                    onChange={(e) => handleLocationChange(e, loc.id)}
-                    className="location-select"
+              <tr key={loc.id} className="table-row">
+                <td className="table-cell">{loc.manager}</td>
+                <td className="table-cell">{loc.location}</td>
+                <td className="table-cell">
+                  <button
+                    className="view-button"
+                    onClick={() => handleViewLocation(loc.manager)}
                   >
-                    <option value="Noida">Noida</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Greater Noida">Greater Noida</option>
-                    <option value="Unknown">Unknown</option>
-                  </select>
-                </td>
-                <td>
-                  <button className="action-button">Edit</button>
-                  <button className="action-button delete-button">Delete</button>
+                    View Location
+                  </button>
                 </td>
               </tr>
             ))}
@@ -153,6 +103,54 @@ const AdminDashboard = () => {
       </div>
     </div>
   );
-};
+}
+
+function ManageSection({
+  title,
+  items,
+  newItemName,
+  setNewItemName,
+  onAdd,
+  onDelete,
+}) {
+  return (
+    <div className="manage-section">
+      <h3 className="section-title">{title}</h3>
+      <input
+        type="text"
+        value={newItemName}
+        onChange={(e) => setNewItemName(e.target.value)}
+        placeholder={`Enter ${title.split(" ")[1]} Name`}
+        className="input"
+      />
+      <button className="add-button" onClick={onAdd}>
+        Add New
+      </button>
+      <table className="table">
+        <thead>
+          <tr className="table-header">
+            <th className="table-header-cell">Name</th>
+            <th className="table-header-cell">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.id} className="table-row">
+              <td className="table-cell">{item.name}</td>
+              <td className="table-cell">
+                <button
+                  className="delete-button"
+                  onClick={() => onDelete(item.id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default AdminDashboard;

@@ -1,193 +1,137 @@
-/* General Body and Container */
-.dashboard-container {
-  padding: 40px;
-  background: linear-gradient(135deg, #f0f8ff, #e0e0e0);
-  font-family: 'Arial', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-/* Main Title Styling */
-h2 {
-  text-align: center;
-  font-size: 30px;
-  font-weight: 700;
-  color: #333;
-  margin-bottom: 40px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* Card Styles */
-.card {
-  background-color: #ffffff;
-  margin: 25px 0;
+.dashboard {
   padding: 30px;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 36px;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif; /* Stylish Font */
+}
+
+.manage-section {
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px);
-}
-
-/* Form Group */
-.form-group {
-  display: flex;
-  gap: 20px;
+  padding: 20px;
   margin-bottom: 20px;
-  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.input-field {
-  padding: 15px;
-  flex: 1;
+.manage-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.input {
+  padding: 10px;
   font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  background-color: #f8f9fa;
+  width: calc(70% - 12px);
+  margin-right: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   transition: border-color 0.3s ease;
 }
 
-.input-field:focus {
+.input:focus {
   border-color: #007bff;
   outline: none;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
-/* Add New Button */
-.dashboard-button {
-  padding: 12px 20px;
+.add-button {
+  padding: 10px 25px;
   background-color: #28a745;
   color: white;
+  font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dashboard-button:hover {
+.add-button:hover {
   background-color: #218838;
-  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Table Styles */
-.crud-table {
+.table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
-.crud-table th,
-.crud-table td {
-  padding: 12px 20px;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-.crud-table th {
+.table-header {
   background-color: #007bff;
   color: white;
+}
+
+.table-header-cell {
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
   font-weight: bold;
+  border: 1px solid #ddd;
 }
 
-.crud-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+.table-row {
+  border: 1px solid #ddd;
+  transition: background-color 0.2s ease;
 }
 
-.crud-table tbody tr:hover {
-  background-color: #e2e6ea;
+.table-row:hover {
+  background-color: #f1f1f1;
 }
 
-.location-select {
-  padding: 10px 15px;
-  font-size: 14px;
-  width: 180px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  background-color: #f8f9fa;
-  transition: border-color 0.3s ease;
+.table-cell {
+  padding: 10px;
+  font-size: 16px;
+  text-align: left;
 }
 
-.location-select:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-}
-
-/* Action Button */
-.action-button {
-  padding: 6px 14px;
-  background-color: #007bff;
+.delete-button {
+  padding: 8px 15px;
+  background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-right: 10px; /* Add space between the buttons */
-}
-
-.action-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-/* Delete Button */
-.delete-button {
-  background-color: #dc3545;
-  padding: 6px 14px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .delete-button:hover {
   background-color: #c82333;
-  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Table Buttons: Edit & Delete */
-button {
-  font-size: 14px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
+.view-button {
+  padding: 8px 15px;
+  background-color: #17a2b8;
+  color: white;
   border: none;
-  transition: background-color 0.3s ease;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
-  opacity: 0.8;
-}
-
-/* Card Title */
-.card h3 {
-  font-size: 24px;
-  color: #333;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .form-group {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .crud-table th,
-  .crud-table td {
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  .input-field {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .dashboard-button {
-    width: 100%;
-  }
+.view-button:hover {
+  background-color: #138496;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

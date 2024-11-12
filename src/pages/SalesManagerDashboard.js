@@ -1,138 +1,123 @@
-import React, { useState } from 'react';
-import './SalesManagerDashboard.css'; // Import styles
+import React, { useState } from "react";
+import './SalesManagerDashboard.css'; // Make sure the CSS file exists
 
-const SalesManagerDashboard = () => {
+function SalesManagerDashboard() {
   const [labours, setLabours] = useState([]);
-  const [newLabour, setNewLabour] = useState({ name: '', id: '', role: '' });
-  const [editingLabour, setEditingLabour] = useState(null);
-  const [message, setMessage] = useState('');
+  const [newLabour, setNewLabour] = useState({ name: "", area: "", inTime: "", outTime: "" });
+  const [isEditing, setIsEditing] = useState(false);
+  const [editLabourIndex, setEditLabourIndex] = useState(null);
 
-  // Handle Create (Add New Labour)
-  const handleAddLabour = () => {
-    if (!newLabour.name || !newLabour.id || !newLabour.role) {
-      setMessage('All fields are required!');
+  const areas = ["Noida", "Delhi", "Greater Noida"];
+
+  // Function to add new Labour
+  const addLabour = () => {
+    if (!newLabour.name || !newLabour.area || !newLabour.inTime || !newLabour.outTime) {
+      alert("Please fill in all fields!");
       return;
     }
-    setLabours([...labours, newLabour]);
-    setNewLabour({ name: '', id: '', role: '' });
-    setMessage('Labour added successfully!');
+
+    setLabours([...labours, { ...newLabour, id: labours.length + 1 }]);
+    setNewLabour({ name: "", area: "", inTime: "", outTime: "" });
   };
 
-  // Handle Edit (Update Labour details)
-  const handleEditLabour = (labour) => {
-    setEditingLabour(labour);
+  // Function to edit Labour
+  const editLabour = (index) => {
+    setIsEditing(true);
+    setEditLabourIndex(index);
+    setNewLabour(labours[index]);
   };
 
-  const handleUpdateLabour = () => {
-    setLabours(
-      labours.map((labour) =>
-        labour.id === editingLabour.id ? editingLabour : labour
-      )
-    );
-    setEditingLabour(null);
-    setMessage('Labour updated successfully!');
+  // Function to update Labour details
+  const updateLabour = () => {
+    const updatedLabours = [...labours];
+    updatedLabours[editLabourIndex] = { ...newLabour };
+    setLabours(updatedLabours);
+    setNewLabour({ name: "", area: "", inTime: "", outTime: "" });
+    setIsEditing(false);
+    setEditLabourIndex(null);
   };
 
-  // Handle Delete
-  const handleDeleteLabour = (id) => {
-    setLabours(labours.filter((labour) => labour.id !== id));
-    setMessage('Labour deleted successfully!');
-  };
-
-  // Handle Input Changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (editingLabour) {
-      setEditingLabour({ ...editingLabour, [name]: value });
-    } else {
-      setNewLabour({ ...newLabour, [name]: value });
-    }
+  // Function to delete a Labour
+  const deleteLabour = (index) => {
+    const updatedLabours = labours.filter((_, i) => i !== index);
+    setLabours(updatedLabours);
   };
 
   return (
-    <div className="dashboard-container">
-      <h2 className="dashboard-title">Sales Manager Dashboard</h2>
-
-      {/* Message */}
-      {message && <div className="message">{message}</div>}
-
-      {/* Create New Labour */}
-      <div className="card">
-        <h3 className="card-title">Add New Labour</h3>
-        <div className="form-group">
+    <div className="dashboard">
+      <h2>Sales Manager Dashboard</h2>
+      <div className="manageButtons">
+        <h3>Manage Labours in Your Area</h3>
+        <div className="form">
           <input
             type="text"
-            name="name"
-            placeholder="Enter Name"
-            value={editingLabour ? editingLabour.name : newLabour.name}
-            onChange={handleInputChange}
-            className="input-field"
+            placeholder="Labour Name"
+            value={newLabour.name}
+            onChange={(e) => setNewLabour({ ...newLabour, name: e.target.value })}
+            className="input"
           />
-          <input
-            type="text"
-            name="id"
-            placeholder="Enter ID"
-            value={editingLabour ? editingLabour.id : newLabour.id}
-            onChange={handleInputChange}
-            className="input-field"
-          />
-          <input
-            type="text"
-            name="role"
-            placeholder="Enter Role"
-            value={editingLabour ? editingLabour.role : newLabour.role}
-            onChange={handleInputChange}
-            className="input-field"
-          />
-        </div>
-
-        {editingLabour ? (
-          <button onClick={handleUpdateLabour} className="action-button">
-            Update Labour
-          </button>
-        ) : (
-          <button onClick={handleAddLabour} className="action-button">
-            Add Labour
-          </button>
-        )}
-      </div>
-
-      {/* Manage Labours */}
-      <div className="card">
-        <h3 className="card-title">Manage Labours within Area</h3>
-        {labours.length === 0 ? (
-          <p>No labours added yet.</p>
-        ) : (
-          <ul className="labour-list">
-            {labours.map((labour) => (
-              <li key={labour.id} className="labour-item">
-                <span>{labour.name} ({labour.role})</span>
-                <button
-                  onClick={() => handleEditLabour(labour)}
-                  className="action-button edit-button"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDeleteLabour(labour.id)}
-                  className="action-button delete-button"
-                >
-                  Delete
-                </button>
-              </li>
+          <select
+            value={newLabour.area}
+            onChange={(e) => setNewLabour({ ...newLabour, area: e.target.value })}
+            className="input"
+          >
+            <option value="">Select Area</option>
+            {areas.map((area) => (
+              <option key={area} value={area}>
+                {area}
+              </option>
             ))}
-          </ul>
-        )}
-      </div>
-
-      {/* Track In-time/Out-time */}
-      <div className="card">
-        <h3 className="card-title">Track In-time/Out-time</h3>
-        <button className="action-button">Track</button>
-        <button className="action-button">View Logs</button>
+          </select>
+          <input
+            type="time"
+            value={newLabour.inTime}
+            onChange={(e) => setNewLabour({ ...newLabour, inTime: e.target.value })}
+            className="input"
+          />
+          <input
+            type="time"
+            value={newLabour.outTime}
+            onChange={(e) => setNewLabour({ ...newLabour, outTime: e.target.value })}
+            className="input"
+          />
+          <button
+            className="button"
+            onClick={isEditing ? updateLabour : addLabour}
+          >
+            {isEditing ? "Update Labour" : "Add New Labour"}
+          </button>
+        </div>
+        <div className="labourList">
+          <h3>Labour List</h3>
+          {labours.length === 0 ? (
+            <p>No labours in this area.</p>
+          ) : (
+            <ul>
+              {labours.map((labour, index) => (
+                <li key={labour.id} className="labourItem">
+                  <span>
+                    {labour.name} ({labour.area}) - In Time: {labour.inTime} - Out Time: {labour.outTime}
+                  </span>
+                  <button
+                    className="editButton"
+                    onClick={() => editLabour(index)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="deleteButton"
+                    onClick={() => deleteLabour(index)}
+                  >
+                    Delete
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default SalesManagerDashboard;
