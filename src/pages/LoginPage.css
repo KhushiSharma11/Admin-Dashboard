@@ -1,82 +1,182 @@
-/* General Styling */
+/* General Page Styling */
 .loginPage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #6e7dff, #42d8c9);
+  height: 100vh;
+  background-color: #f4f4f9;
+  padding: 20px;
   overflow: hidden;
 }
 
+/* Container for the Login Form */
 .loginContainer {
   background-color: #fff;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  padding: 40px;
   width: 100%;
-  max-width: 900px;
+  max-width: 900px; /* Control max width */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.loginContainer h2{
-  font-size: 28;
-}
-
-.loginContainer:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Header Style */
 .header {
-  margin-top: 0;
-  margin-bottom: 40px;
-  font-size: 36px;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
   color: #333;
-  font-weight: 700;
-  transition: color 0.3s;
 }
 
-.header:hover {
-  color: #6e7dff;
-}
-
+/* Error Message Styling */
 .errorMessage {
   color: red;
+  margin-top: 20px;
   font-size: 16px;
-  margin-bottom: 20px;
 }
 
+/* Role Cards Container */
 .roleContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+  justify-content: space-evenly; /* Evenly distribute the cards */
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
 }
 
+/* Card Wrapper */
 .cardWrapper {
-  flex: 1 1 calc(50% - 40px);
-  max-width: 350px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  flex: 1 1 calc(25% - 20px);
+  max-width: 250px; /* Restrict max width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cardWrapper:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Add hover effects to the LoginCard component inside the LoginPage */
-.cardWrapper .loginCard {
+/* Card Styling */
+.card {
+  background-color: #f9f9f9;
   padding: 20px;
-  border: 1px solid #ddd;
   border-radius: 10px;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 250px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cardWrapper .loginCard:hover {
-  background-color: #f0f4ff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar Image Styling */
+.card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+/* Role Heading */
+.roleHeader {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Input Fields Styling */
+.input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Input Focus Style */
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(110, 125, 255, 0.5);
+}
+
+/* Button Styling */
+.button {
+  width: 100%;
+  padding: 12px;
+  background-color: #6e7dff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #5a6aff;
+  transform: scale(1.05);
+}
+
+/* Responsive Layouts */
+@media (max-width: 768px) {
+  /* For tablets and smaller screens */
+  .roleContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cardWrapper {
+    flex: 1 1 100%; /* Full-width cards for small screens */
+    max-width: 100%;
+  }
+
+  .loginContainer {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .input {
+    font-size: 14px;
+  }
+
+  .button {
+    font-size: 14px;
+  }
+
+  .roleHeader {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For smaller mobile screens */
+  .header {
+    font-size: 22px;
+  }
+
+  .input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .roleHeader {
+    font-size: 14px;
+  }
 }

@@ -36,7 +36,9 @@
 }
 
 .task-item {
-  margin-bottom: 15px;
+  margin-bottom: 20px; /* Increased spacing between tasks */
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd; /* Optional: Add a subtle line between tasks */
 }
 
 /* Task Card Styling */
@@ -45,9 +47,12 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e9f7f6;
-  padding: 15px 20px;
+  padding: 20px 30px; /* Padding added to left and right sides */
   border-radius: 8px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  gap: 15px; /* Adds spacing between task name, status, and buttons */
+  margin-bottom: 15px; /* Add space below each task card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to improve visibility */
 }
 
 /* Hover effect for task card */
@@ -73,7 +78,8 @@
 }
 
 /* Button Styling */
-.complete-button {
+.complete-button,
+.incomplete-button { /* Style for both Complete and Incomplete buttons */
   padding: 8px 15px;
   background-color: #42d8c9;
   color: #fff;
@@ -81,9 +87,11 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  margin-left: 10px; /* Adds space between buttons */
 }
 
-.complete-button:hover {
+.complete-button:hover,
+.incomplete-button:hover {
   background-color: #35b0a3;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -1,40 +1,52 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import "./AdminDashboard.css"; // Import the CSS file
+import { nanoid } from "nanoid";
+import "./AdminDashboard.css";
 
 function AdminDashboard() {
   const [salesManagers, setSalesManagers] = useState([
-    { id: uuidv4(), name: "Sam" },
-    { id: uuidv4(), name: "John" },
-    { id: uuidv4(), name: "Joy" }, // New Sales Manager
+    { id: nanoid(6), name: "Sam", location: "New York" },
+    { id: nanoid(6), name: "John", location: "Chicago" },
+    { id: nanoid(6), name: "Joy", location: "San Francisco" },
   ]);
   const [labours, setLabours] = useState([
-    { id: uuidv4(), name: "Aish" },
-    { id: uuidv4(), name: "Rio" },
-    { id: uuidv4(), name: "Emi" }, // New Labour
-  ]);
-  const [locations] = useState([
-    { id: uuidv4(), manager: "Sam", location: "Noida" },
-    { id: uuidv4(), manager: "John", location: "Delhi" },
-    { id: uuidv4(), manager: "Joy", location: "Mumbai" }, // New Location
+    { id: nanoid(6), name: "Aish", location: "Dallas" },
+    { id: nanoid(6), name: "Rio", location: "Seattle" },
+    { id: nanoid(6), name: "Emi", location: "Miami" },
   ]);
 
   const [newSalesManagerName, setNewSalesManagerName] = useState("");
+  const [newSalesManagerLocation, setNewSalesManagerLocation] = useState("");
   const [newLabourName, setNewLabourName] = useState("");
+  const [newLabourLocation, setNewLabourLocation] = useState("");
 
-  const handleAdd = (type, name) => {
-    if (!name.trim()) {
-      alert("Name cannot be empty");
+  const [editItem, setEditItem] = useState(null); // Keeps track of item being edited
+
+  const locations = [
+    "New York",
+    "Chicago",
+    "San Francisco",
+    "Dallas",
+    "Seattle",
+    "Miami",
+    "Boston",
+    "Los Angeles",
+  ];
+
+  const handleAdd = (type, name, location) => {
+    if (!name.trim() || !location.trim()) {
+      alert("Name and location cannot be empty!");
       return;
     }
 
-    const newItem = { id: uuidv4(), name };
+    const newItem = { id: nanoid(6), name, location };
     if (type === "salesManager") {
       setSalesManagers([...salesManagers, newItem]);
       setNewSalesManagerName("");
+      setNewSalesManagerLocation("");
     } else if (type === "labour") {
       setLabours([...labours, newItem]);
       setNewLabourName("");
+      setNewLabourLocation("");
     }
   };
 
@@ -46,61 +58,60 @@ function AdminDashboard() {
     }
   };
 
-  const handleViewLocation = (managerName) => {
-    const location = locations.find((loc) => loc.manager === managerName);
-    alert(`Manager Location: ${location ? location.location : "Unknown"}`);
+  const handleEdit = (item) => {
+    setEditItem(item); // Open edit form for the selected item
+  };
+
+  const handleSave = (type, updatedItem) => {
+    if (type === "salesManager") {
+      setSalesManagers(
+        salesManagers.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+      );
+    } else if (type === "labour") {
+      setLabours(
+        labours.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+      );
+    }
+    setEditItem(null); // Close edit mode
   };
 
   return (
     <div className="dashboard">
       <h2 className="header">Admin Dashboard</h2>
 
+      {/* Sales Manager Section */}
       <ManageSection
         title="Manage Sales Managers"
         items={salesManagers}
         newItemName={newSalesManagerName}
         setNewItemName={setNewSalesManagerName}
-        onAdd={() => handleAdd("salesManager", newSalesManagerName)}
+        newItemLocation={newSalesManagerLocation}
+        setNewItemLocation={setNewSalesManagerLocation}
+        locations={locations}
+        onAdd={() =>
+          handleAdd("salesManager", newSalesManagerName, newSalesManagerLocation)
+        }
         onDelete={(id) => handleDelete("salesManager", id)}
+        onEdit={handleEdit}
+        onSave={(updatedItem) => handleSave("salesManager", updatedItem)}
+        editItem={editItem}
       />
 
+      {/* Labour Section */}
       <ManageSection
         title="Manage Labours"
         items={labours}
         newItemName={newLabourName}
         setNewItemName={setNewLabourName}
-        onAdd={() => handleAdd("labour", newLabourName)}
+        newItemLocation={newLabourLocation}
+        setNewItemLocation={setNewLabourLocation}
+        locations={locations}
+        onAdd={() => handleAdd("labour", newLabourName, newLabourLocation)}
         onDelete={(id) => handleDelete("labour", id)}
+        onEdit={handleEdit}
+        onSave={(updatedItem) => handleSave("labour", updatedItem)}
+        editItem={editItem}
       />
-
-      <div className="manage-section">
-        <h3 className="section-title">View Locations</h3>
-        <table className="table">
-          <thead>
-            <tr className="table-header">
-              <th className="table-header-cell">Sales Manager</th>
-              <th className="table-header-cell">Location</th>
-              <th className="table-header-cell">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {locations.map((loc) => (
-              <tr key={loc.id} className="table-row">
-                <td className="table-cell">{loc.manager}</td>
-                <td className="table-cell">{loc.location}</td>
-                <td className="table-cell">
-                  <button
-                    className="view-button"
-                    onClick={() => handleViewLocation(loc.manager)}
-                  >
-                    View Location
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 }
@@ -110,41 +121,110 @@ function ManageSection({
   items,
   newItemName,
   setNewItemName,
+  newItemLocation,
+  setNewItemLocation,
+  locations,
   onAdd,
   onDelete,
+  onEdit,
+  onSave,
+  editItem,
 }) {
   return (
     <div className="manage-section">
-      <h3 className="section-title">{title}</h3>
-      <input
-        type="text"
-        value={newItemName}
-        onChange={(e) => setNewItemName(e.target.value)}
-        placeholder={`Enter ${title.split(" ")[1]} Name`}
-        className="input"
-      />
-      <button className="add-button" onClick={onAdd}>
-        Add New
-      </button>
+      <h3>{title}</h3>
+      <div className="form-group">
+        <input
+          type="text"
+          value={newItemName}
+          onChange={(e) => setNewItemName(e.target.value)}
+          placeholder={`Enter ${title.split(" ")[1]} Name`}
+          className="form-control"
+        />
+        <select
+          value={newItemLocation}
+          onChange={(e) => setNewItemLocation(e.target.value)}
+          className="form-control"
+        >
+          <option value="">Select Location</option>
+          {locations.map((location) => (
+            <option key={location} value={location}>
+              {location}
+            </option>
+          ))}
+        </select>
+        <button className="add-button" onClick={onAdd}>
+          Add New
+        </button>
+      </div>
       <table className="table">
         <thead>
-          <tr className="table-header">
-            <th className="table-header-cell">Name</th>
-            <th className="table-header-cell">Action</th>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={item.id} className="table-row">
-              <td className="table-cell">{item.name}</td>
-              <td className="table-cell">
-                <button
-                  className="delete-button"
-                  onClick={() => onDelete(item.id)}
-                >
-                  Delete
-                </button>
-              </td>
+            <tr key={item.id}>
+              {editItem?.id === item.id ? (
+                <>
+                  <td>{item.id}</td>
+                  <td>
+                    <input
+                      type="text"
+                      value={editItem.name}
+                      onChange={(e) =>
+                        onSave({ ...editItem, name: e.target.value })
+                      }
+                    />
+                  </td>
+                  <td>
+                    <select
+                      value={editItem.location}
+                      onChange={(e) =>
+                        onSave({ ...editItem, location: e.target.value })
+                      }
+                    >
+                      {locations.map((location) => (
+                        <option key={location} value={location}>
+                          {location}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td>
+                    <button
+                      className="save-button"
+                      onClick={() => onSave(editItem)}
+                    >
+                      Save
+                    </button>
+                  </td>
+                </>
+              ) : (
+                <>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.location}</td>
+                  <td>
+                    <button
+                      className="edit-button"
+                      onClick={() => onEdit(item)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-button"
+                      onClick={() => onDelete(item.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>

@@ -1,62 +1,113 @@
 /* Styling for the card container */
 .card {
-  background-color: #f9f9f9;
+  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%; /* Ensure full width inside flexbox container */
+  max-width: 350px; /* Set a max width for uniformity */
+  min-height: 380px; /* Flexible height to ensure content fits */
+  box-sizing: border-box; /* Ensure padding is included in the total width/height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribute space between content and button */
+  align-items: center; /* Ensure content is centered */
 }
 
+/* Hover effect on card */
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Avatar Styling */
+.avatar {
+  width: 100px; /* Fixed size for avatar */
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px; /* Space between avatar and role name */
+}
+
 /* Header styling */
 .header {
-  font-size: 24px; /* Increased font size for more prominence */
+  font-size: 18px; /* Reduced font size for better fit */
   font-weight: bold;
   margin-bottom: 20px;
+  color: #333;
   transition: color 0.3s;
 }
 
 .header:hover {
-  color: #6e7dff;
+  color: #6a79fe;
+}
+
+/* Error message styling */
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 15px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 /* Input fields */
 .input {
   width: 100%; /* Take full width of container */
-  max-width: 300px; /* Set maximum width for uniformity */
-  padding: 10px;
+  padding: 12px; /* Adjust padding for better interaction */
   margin: 10px 0;
   border-radius: 5px;
   border: 1px solid #ddd;
-  font-size: 16px; /* Consistent font size */
+  font-size: 14px; /* Slightly smaller font size */
   box-sizing: border-box; /* Ensures padding doesn't affect width */
-  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s ease;
 }
 
+/* Focus effect for input fields */
+.input:focus {
+  box-shadow: 0 0 10px rgba(110, 125, 255, 0.5); /* Highlight input on focus */
+  outline: none;
+}
+
+/* Hover effect for input fields */
 .input:hover {
-  box-shadow: 0 0 10px rgba(110, 125, 255, 0.5);
+  box-shadow: 0 0 10px rgba(110, 125, 255, 0.3); /* Subtle hover shadow */
 }
 
 /* Button styling */
 .button {
-  width: 100%; /* Matches width of inputs */
-  max-width: 300px; /* Consistent width with input fields */
-  padding: 10px;
+  width: 100%; /* Match width with input fields */
+  padding: 12px;
   background-color: #6e7dff;
-  color: #fff;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s, transform 0.3s;
+  margin-top: 15px; /* Adds space between input fields and button */
 }
 
+/* Hover effect for Login button */
 .button:hover {
   background-color: #5a6aff;
   transform: scale(1.05);
+}
+
+/* Styling for Login Button in .loginCard */
+.cardWrapper .loginCard button {
+  background-color: #6e7dff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for Login button */
+.cardWrapper .loginCard button:hover {
+  background-color: #5a64d1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow on hover */
 }
