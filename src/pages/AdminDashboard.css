@@ -4,6 +4,7 @@
   text-transform: uppercase;
   padding: 30px;
   font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fdfbfb, #4ba0cb);
 }
 
 .header {
