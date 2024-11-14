@@ -8,7 +8,6 @@ function LabourDashboard() {
     { id: 3, name: "Task 3", status: "Incomplete" },
   ]);
 
-  // Function to mark a task as complete
   const completeTask = (taskId) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, status: "Completed" } : task

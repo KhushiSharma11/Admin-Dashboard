@@ -4,14 +4,14 @@ import "./AdminDashboard.css";
 
 function AdminDashboard() {
   const [salesManagers, setSalesManagers] = useState([
-    { id: nanoid(6), name: "Sam", location: "New York" },
-    { id: nanoid(6), name: "John", location: "Chicago" },
-    { id: nanoid(6), name: "Joy", location: "San Francisco" },
+    { id: nanoid(6), name: "Sam", location: "Delhi" },
+    { id: nanoid(6), name: "John", location: "Noida" },
+    { id: nanoid(6), name: "Joy", location: "Greater Noida" },
   ]);
   const [labours, setLabours] = useState([
-    { id: nanoid(6), name: "Aish", location: "Dallas" },
-    { id: nanoid(6), name: "Rio", location: "Seattle" },
-    { id: nanoid(6), name: "Emi", location: "Miami" },
+    { id: nanoid(6), name: "Aish", location: "Greater Noida" },
+    { id: nanoid(6), name: "Rio", location: "Delhi" },
+    { id: nanoid(6), name: "Emi", location: "Noida" },
   ]);
 
   const [newSalesManagerName, setNewSalesManagerName] = useState("");
@@ -19,17 +19,13 @@ function AdminDashboard() {
   const [newLabourName, setNewLabourName] = useState("");
   const [newLabourLocation, setNewLabourLocation] = useState("");
 
-  const [editItem, setEditItem] = useState(null); // Keeps track of item being edited
+  const [editItem, setEditItem] = useState(null); 
 
   const locations = [
-    "New York",
-    "Chicago",
-    "San Francisco",
-    "Dallas",
-    "Seattle",
-    "Miami",
-    "Boston",
-    "Los Angeles",
+    "Noida", 
+    "Delhi",
+    "Greater Noida",
+
   ];
 
   const handleAdd = (type, name, location) => {
@@ -59,7 +55,7 @@ function AdminDashboard() {
   };
 
   const handleEdit = (item) => {
-    setEditItem(item); // Open edit form for the selected item
+    setEditItem(item);
   };
 
   const handleSave = (type, updatedItem) => {
@@ -72,14 +68,14 @@ function AdminDashboard() {
         labours.map((item) => (item.id === updatedItem.id ? updatedItem : item))
       );
     }
-    setEditItem(null); // Close edit mode
+    setEditItem(null); 
   };
 
   return (
     <div className="dashboard">
       <h2 className="header">Admin Dashboard</h2>
 
-      {/* Sales Manager Section */}
+      {}
       <ManageSection
         title="Manage Sales Managers"
         items={salesManagers}
@@ -97,7 +93,6 @@ function AdminDashboard() {
         editItem={editItem}
       />
 
-      {/* Labour Section */}
       <ManageSection
         title="Manage Labours"
         items={labours}

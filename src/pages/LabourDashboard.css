@@ -1,4 +1,4 @@
-/* General Dashboard Styling */
+
 .dashboard {
   padding: 20px;
   background: #f4f4f4;
@@ -12,16 +12,16 @@
   text-align: center;
   margin-bottom: 30px;
   color: #333;
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transition */
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; 
 }
 
-/* Hover effect for header */
+
 .header:hover {
-  color: #42d8c9; /* Change text color on hover */
-  transform: scale(1.05); /* Slightly enlarge the header */
+  color: #42d8c9;
+  transform: scale(1.05); 
 }
 
-/* Task List Styling */
+
 .task-list {
   background-color: #fff;
   padding: 20px;
@@ -36,26 +36,26 @@
 }
 
 .task-item {
-  margin-bottom: 20px; /* Increased spacing between tasks */
+  margin-bottom: 20px; 
   padding-bottom: 15px;
-  border-bottom: 1px solid #ddd; /* Optional: Add a subtle line between tasks */
+  border-bottom: 1px solid #ddd; 
 }
 
-/* Task Card Styling */
+
 .task-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #e9f7f6;
-  padding: 20px 30px; /* Padding added to left and right sides */
+  padding: 20px 30px; 
   border-radius: 8px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  gap: 15px; /* Adds spacing between task name, status, and buttons */
-  margin-bottom: 15px; /* Add space below each task card */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to improve visibility */
+  gap: 15px; 
+  margin-bottom: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-/* Hover effect for task card */
+
 .task-card:hover {
   transform: scale(1.03);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -77,9 +77,9 @@
   color: #888;
 }
 
-/* Button Styling */
+
 .complete-button,
-.incomplete-button { /* Style for both Complete and Incomplete buttons */
+.incomplete-button {
   padding: 8px 15px;
   background-color: #42d8c9;
   color: #fff;
@@ -87,7 +87,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  margin-left: 10px; /* Adds space between buttons */
+  margin-left: 10px; 
 }
 
 .complete-button:hover,

@@ -1,6 +1,5 @@
-// Example API function to fetch admin data
 export const fetchAdminData = async () => {
-  const response = await fetch('/api/admin/dashboard'); // API endpoint to fetch admin data
+  const response = await fetch('/api/admin/dashboard');
   if (!response.ok) {
     throw new Error('Failed to fetch admin data');
   }

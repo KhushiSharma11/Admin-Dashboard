@@ -1,7 +1,5 @@
-/* Import Poppins font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* General Dashboard Styles */
 .dashboard {
   padding: 20px;
   font-family: 'Arial', sans-serif;
@@ -9,14 +7,14 @@
   max-width: 1000px;
   margin: 0 auto;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adding shadow to the container */
-  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+  transition: all 0.3s ease-in-out; 
 }
 
-/* Hover effect for the whole dashboard */
+
 .dashboard:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
-  transform: translateY(-5px); /* Slight lift effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); 
+  transform: translateY(-5px); 
 }
 
 .title {
@@ -24,41 +22,37 @@
   color: #333;
   font-size: 2.5rem;
   margin-bottom: 20px;
-  font-family: 'Poppins', sans-serif; /* Change font to Poppins */
-  font-weight: 600; /* Adjust weight for emphasis */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600; 
   transition: color 0.3s ease;
 }
 
-/* Hover effect for the title */
 .title:hover {
-  color: #6e7dff; /* Change color when hovered */
+  color: #6e7dff; 
 }
 
-/* Form Container */
 .formContainer {
   margin-bottom: 30px;
 }
 
-/* Unified input and select field styling */
+
 .inputField, .selectField {
   padding: 12px;
   margin: 8px 0;
   border-radius: 5px;
   border: 1px solid #ddd;
-  width: 100%;  /* Ensure full width */
-  box-sizing: border-box; /* Ensure padding does not affect the width */
-  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding shadow to inputs */
+  width: 100%;  
+  box-sizing: border-box; 
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Add hover effect on input fields */
 .inputField:hover, .selectField:hover {
   border-color: #6e7dff;
-  box-shadow: 0 2px 6px rgba(110, 125, 255, 0.6); /* Highlight effect on hover */
-  transform: scale(1.02); /* Slight zoom effect on hover */
+  box-shadow: 0 2px 6px rgba(110, 125, 255, 0.6); 
+  transform: scale(1.02); 
 }
 
-/* Button styling */
 .button {
   padding: 12px;
   background-color: #85e873;
@@ -68,19 +62,18 @@
   margin: 10px 0;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s ease; /* Added box-shadow transition */
-  width: 100%; /* Full width for button */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow to buttons */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s ease; 
+  width: 100%; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
-/* Hover effect for buttons */
 .button:hover {
   background-color: #76c468;
-  transform: translateY(-2px); /* Slight lift effect */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Shadow effect on hover */
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
 }
 
-/* Table Container */
+
 .tableContainer {
   margin-top: 20px;
 }
@@ -89,22 +82,22 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow to the table */
-  transition: transform 0.2s ease-in-out; /* Smooth table hover effect */
-}
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease-in-out;
+ }
 
-/* Hover effect on table rows */
+
 .employeeTable tr:hover {
   background-color: #f1f1f1;
-  transform: scale(1.02); /* Slight zoom-in effect */
-  transition: transform 0.2s ease-in-out; /* Smooth transition */
+  transform: scale(1.02); 
+  transition: transform 0.2s ease-in-out; 
 }
 
 .employeeTable th, .employeeTable td {
   padding: 12px;
   text-align: center;
   border: 1px solid #ddd;
-  transition: background-color 0.3s ease-in-out; /* Smooth background color transition */
+  transition: background-color 0.3s ease-in-out; 
 }
 
 .employeeTable th {
@@ -112,7 +105,7 @@
   color: white;
 }
 
-/* Hover effect on table header */
+
 .employeeTable th:hover {
   background-color: #4a59f1;
   cursor: pointer;
@@ -122,25 +115,23 @@
   background-color: #f9f9f9;
 }
 
-/* Edit and Delete Buttons Styling */
 .editButton, .deleteButton {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin: 0 5px;
-  transition: background-color 0.3s, transform 0.2s ease-in-out; /* Added transform on hover */
+  transition: background-color 0.3s, transform 0.2s ease-in-out; 
 }
 
-/* Hover effect for Edit and Delete Buttons */
 .editButton:hover {
   background-color: #e1b200;
   transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding shadow to Edit button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .deleteButton:hover {
   background-color: #d32f2f;
   transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding shadow to Delete button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }

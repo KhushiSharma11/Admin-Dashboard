@@ -1,4 +1,4 @@
-/* Dashboard Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 .dashboard {
   font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
@@ -151,7 +151,6 @@ h3:hover {
   transform: scale(1.05);
 }
 
-/* Dropdown Hover Effect */
 select {
   padding: 10px;
   font-size: 16px;
@@ -182,7 +181,7 @@ option:hover {
 .edit-button {
   background-color: #ffc107;
   color: white;
-  margin-right: 15px; /* Added space between Edit and Delete */
+  margin-right: 15px; 
 }
 
 .edit-button:hover {

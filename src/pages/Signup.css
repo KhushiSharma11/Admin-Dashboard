@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #fdfbfb, #4ba0cb);
+  padding: 20px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background-color: #fff;
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  align-items: center;
+  transition:  0.3s ease, transform 0.3s ease;
+}
+
+.signup-form:hover {
+  background: linear-gradient(135deg, #ffffff, #e3e6e8);
+  transform: translateY(-5px);
+}
+
+.signup-form h2 {
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  transition: color 0.3s ease;
+  
+}
+
+.signup-form h2:hover {
+  color: #4ba0cb;
+}
+
+.signup-form select,
+.signup-form input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition:  0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.signup-form select:hover,
+.signup-form input:hover {
+  background: linear-gradient(135deg, #e8f0ff, #d6ebff);
+  border-color: #aaa;
+  transform: scale(1.02);
+}
+
+.signup-form select:focus,
+.signup-form input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(110, 125, 255, 0.5);
+}
+
+.signup-form button {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  background: linear-gradient(135deg, #85e873, #76c468);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease, transform 0.3s ease;
+}
+
+.signup-form button:hover {
+  background: linear-gradient(135deg, #76c468, #67a957);
+  transform: scale(1.1);
+}
+
+.signup-form button:disabled {
+  cursor: not-allowed;
+  transform: none;
+}
+
+.signup-form p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signup-form a {
+  color: #4a90e2;
+  text-decoration: none;
+  transition: color 0.3s ease, 0.3s ease, transform 0.3s ease;
+}
+
+.signup-form a:hover {
+  text-decoration: underline;
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .signup-form {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .signup-form input,
+  .signup-form select {
+    font-size: 14px;
+  }
+
+  .signup-form button {
+    font-size: 14px;
+  }
+
+  .signup-form h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup-form h2 {
+    font-size: 20px;
+  }
+
+  .signup-form input,
+  .signup-form select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .signup-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
